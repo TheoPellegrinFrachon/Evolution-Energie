@@ -1,0 +1,5 @@
+
+====================2024-07-29 18:59:10
+Number of lines of the file : 7789
+Empty lines have been found : 2 7779 7783
+Incorrect lines have been found (these lines may include header or footer) : 1 7780 7781 7782 7784 7785 7786 7787 7788 7789
