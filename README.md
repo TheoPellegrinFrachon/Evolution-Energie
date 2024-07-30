@@ -8,7 +8,7 @@ If the program has been correctly downloaded from the Github deposite, the progr
 
 If you do not find the executable file in the main folder, copy the DicewarePassphraseGenetero.exe file from dist\ folder to the main folder. For that purpose, move to the main folder and enter in terminal :
 
-cp dist\DicewarepassphraseGenerator.exe .
+*    cp dist\DicewarepassphraseGenerator.exe .
 
 To be built from the Python file, this program requires to have both Python and the PyInstaller package already installed on the machine. Compilation is then performed by entering in the terminal the following instructions : 
 
