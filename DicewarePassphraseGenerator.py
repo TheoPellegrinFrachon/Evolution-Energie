@@ -223,7 +223,7 @@ def passphrase_generator(dictionary,max_words):
 def ask_new_passphrase():
     ask_test = True
     while ask_test:
-        ask = input("Do you want a new passphrase ? Y for yes, N to quit")
+        ask = input("Do you want a new passphrase ? Y for yes, N to quit\n")
         if (ask == 'Y') | (ask == 'y') | (ask == 'Yes') | (ask == 'yes') | (ask == 'YES'):
             return True
         elif (ask == 'N') | (ask == 'n') | (ask == 'No') | (ask == 'no') | (ask == 'NO'):
@@ -249,9 +249,9 @@ def main():
         passphrase_w = passphrase_generator(dictionary,max_words)
         if type(passphrase_w) == bool: #quit option asked
             return
+        print(passphrase_w)
         stay_test = ask_new_passphrase()
-    #print(passphrase_w)
-    return passphrase_w
+    return
 
 # Execute main function to generate a passphrase ===========================================
 
