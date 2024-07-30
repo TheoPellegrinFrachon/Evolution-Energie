@@ -146,11 +146,13 @@ def ask_max_characters():
     #to ask the user if the respect of the standart 100-characters limitation is expected
     ask_test = True
     while ask_test:
-        ask = input("Do you want to generate a passphrase with less than 100 characters ? (recommanded) Enter Y for Yes or N for No\n")
+        ask = input("Do you want to respect the standard limitation of 100 characters on the passphrase ? (recommanded) Enter Y for Yes or N for No\n")
         if (ask == 'Y') | (ask == 'y') | (ask == 'Yes') | (ask == 'yes') | (ask == 'YES'):
             return True
         elif (ask == 'N') | (ask == 'n') | (ask == 'No') | (ask == 'no') | (ask == 'NO'):
             return False
+        elif (ask == 'quit') | (ask == 'QUIT') | (ask == 'Quit'):
+            return 3
 
 def ask_number_words(dictionary,max_words,max_100_characters):
     #to input the desired number of words in the passphrase by asking the user
@@ -161,6 +163,11 @@ def ask_number_words(dictionary,max_words,max_100_characters):
         else:
             question = "Number of words in the passphrase ? 1 minimum (password), at least 4 words are recommended for good robustness\n"
         N_words = input(question)
+        try:
+            if (N_words == 'quit') | (N_words == 'QUIT') | (N_words == 'Quit'):
+                return N_test, True
+        except ValueError:
+            pass
         try:
             N_words = int(N_words)
             if N_words<=0: #fordbidding case N_words = 0
@@ -193,6 +200,8 @@ def passphrase_generator(dictionary,max_words):
         else:
             max_100_characters = False
         N_test, N_words = ask_number_words(dictionary,max_words,max_100_characters)
+        if type(N_words) == bool: #quit option asked
+            return False
         keys_list = list(dictionary.keys())
         if max_100_characters == True:
             time_start = time.time()
@@ -209,10 +218,22 @@ def passphrase_generator(dictionary,max_words):
             on_built_test = False
     return passphrase_w
 
+# Utilitarian function : miscellaneous =====================================================
+
+def ask_new_passphrase():
+    ask_test = True
+    while ask_test:
+        ask = input("Do you want a new passphrase ? Y for yes, N to quit")
+        if (ask == 'Y') | (ask == 'y') | (ask == 'Yes') | (ask == 'yes') | (ask == 'YES'):
+            return True
+        elif (ask == 'N') | (ask == 'n') | (ask == 'No') | (ask == 'no') | (ask == 'NO'):
+            return False
+        elif (ask == 'quit') | (ask == 'QUIT') | (ask == 'Quit'):
+            return False
+
 # Main function : core of the program ======================================================
 
 def main():
-    #main function
     lines = file_loading(dictionary_path) #data laoding
     output_write(errorfile_path,new_run=True,error_len=len(lines))
     if type(lines) == bool:
@@ -222,9 +243,15 @@ def main():
     if dictionary_check == False:
         return
     max_words = check_length_words(dictionary)
-    passphrase_w = passphrase_generator(dictionary,max_words)
-    print(passphrase_w)
-    return
+    print("You can quit the program at any time by entering 'quit' as an answer for any question\n")
+    stay_test = True
+    while stay_test:
+        passphrase_w = passphrase_generator(dictionary,max_words)
+        if type(passphrase_w) == bool: #quit option asked
+            return
+        stay_test = ask_new_passphrase()
+    #print(passphrase_w)
+    return passphrase_w
 
 # Execute main function to generate a passphrase ===========================================
 
