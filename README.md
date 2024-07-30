@@ -7,12 +7,15 @@ This program generates a passphrase for security. It uses the principle of the D
 If the program has been correctly downloaded from the Github deposite, the program is already built. The executable application can be found in the main folder as DicewarePassphraseGenerator.exe. This program has been compiled via the PyInstaller module for Python on Windows machine. It can be executed on Linux machine with 'wine' method. Check the Program Execution part.
 
 If you do not find the executable file in the main folder, copy the DicewarePassphraseGenetero.exe file from dist\ folder to the main folder. For that purpose, move to the main folder and enter in terminal :
+
 cp dist\DicewarepassphraseGenerator.exe .
 
 To be built from the Python file, this program requires to have both Python and the PyInstaller package already installed on the machine. Compilation is then performed by entering in the terminal the following instructions : py -m PyInstaller --onefile DicewarePassphraseGenerator.py
 You must then copy the DicewarePassphraseGenetero.exe file from dist\ folder to the main folder. For that purpose, move to the main folder and enter in terminal :
+
 cp dist\DicewarepassphraseGenerator.exe .     (Windows)
-cp dist\DicewarepassphraseGenerator .         (Linux)
+
+cp dist/DicewarepassphraseGenerator .         (Linux)
 
 
 ## Program Execution
@@ -22,6 +25,7 @@ To be executed, the application requires to have the file 'diceware.wordlist.asc
 The program can be executed by entering the following instructions in the terminal, while being in the main folder, then pressing Enter :
 
 DicewarePassphraseGenerator.exe          (Windows)
+
 wine DicewarePassphraseGenerator.exe     (Linux)
 
 If you compiled yourself the program on a Linux machine, execute the program by entering the following sntructions while being in the main folder :
